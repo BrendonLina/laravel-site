@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::namespace('Site')->group(function (){
-    Route::get(uri: '/', action:'HomeController');
-    Route::get(uri:'/produtos', action:'CategoriaController@index');
-    Route::get(uri:'/produtos/{slug}', action:'CategoriaController@show');
+    Route::get(uri: '/', action:'HomeController')->name('site.home');
+    Route::get(uri:'/produtos', action:'CategoriaController@index')->name('site.categoria');
+    // Route::get(uri:'/produtos/{slug}', action:'CategoriaController@show')->name('site.produtos.categoria');
 
-    Route::get(uri: '/blog', action:'BlogController');
+    Route::get(uri: '/blog', action:'BlogController')->name('site.blog');
 
-    Route::view(uri:'/sobre', view:'site.about.index');
+    Route::view(uri:'/sobre', view:'site.about.index')->name('site.sobre');
 
-    Route::get(uri:'/contato', action:'ContatoController@index');
-    Route::post(uri:'/contato', action:'ContatoController@form');
+    Route::get(uri:'/contato', action:'ContatoController@index')->name('site.contato');
+    Route::post(uri:'/contato', action:'ContatoController@form')->name('site.contato.form');
 });

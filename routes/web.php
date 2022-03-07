@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::namespace('Site')->group(function (){
-    Route::get(uri: '/', action:'HomeController')->name('site.home');
+    Route::get(uri:'/', action:'HomeController')->name(name:'site.home');
     Route::get(uri:'/produtos', action:'CategoriaController@index')->name('site.categoria');
     // Route::get(uri:'/produtos/{slug}', action:'CategoriaController@show')->name('site.produtos.categoria');
 

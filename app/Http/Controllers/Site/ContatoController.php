@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\ContatoRequest;
+use App\Contato;
+use App\Notifications\NovoContato;
+use Illuminate\Support\Facades\Notification;
 
 class ContatoController extends Controller
 {
@@ -17,9 +21,19 @@ class ContatoController extends Controller
          return view('site.contato.index');
     }
 
-    public function form(Request $request)
+    public function form(ContatoRequest $request)
     {
-        ddd($request->all());
+        
+        $contato = Contato::create($request->all());
+
+        Notification::route('mail', config('mail.from.address'))
+        ->notify(new NovoContato($contato));
+
+        return redirect()->route(route:'site.contato')->with([
+            'success' => true,
+            'message' => 'O contato foi enviado com sucesso']);
+
+        // ddd($request->all());
     }
 
     /**

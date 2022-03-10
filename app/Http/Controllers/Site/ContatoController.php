@@ -29,11 +29,14 @@ class ContatoController extends Controller
         Notification::route('mail', config('mail.from.address'))
         ->notify(new NovoContato($contato));
 
-        return redirect()->route(route:'site.contato')->with([
-            'success' => true,
-            'message' => 'O contato foi enviado com sucesso']);
+        // return redirect()->route(route:'site.contato')->with([
+        //     'success' => true,
+        //     'message' => 'O contato foi enviado com sucesso']);
 
-        // ddd($request->all());
+        toastr()->success('O contato foi criado com sucesso !');
+        return back();
+
+        
     }
 
     /**

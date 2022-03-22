@@ -4,6 +4,7 @@ namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Categoria;
 
 class CategoriaController extends Controller
 {
@@ -14,7 +15,9 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        return view('site.categoria.index');
+        return view('site.categoria.index', [
+            'categories' => Categoria::all(),
+        ]);
     }
 
     /**
